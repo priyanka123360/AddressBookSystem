@@ -1,6 +1,7 @@
 package com.bridgelabz;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,7 +14,7 @@ public class AddressBook {
 	int zip;
 	long phoneNumber;
 	String email;
-	private List<Contacts> contactList = new ArrayList<>();
+	private List<Contacts> contactList = new ArrayList<>();;
 
 	Scanner sc = new Scanner(System.in);
 
@@ -22,6 +23,7 @@ public class AddressBook {
 		Contacts person = new Contacts();
 		System.out.println("Enter your First Name");
 		firstName = sc.next();
+		if (getIndex(firstName)==-1) {
 		person.setFirstName(firstName);
 		System.out.println("Enter your Last Name");
 		lastName = sc.next();
@@ -45,7 +47,9 @@ public class AddressBook {
 		email = sc.next();
 		person.setEmail(email);
 		contactList.add(new Contacts(firstName, lastName, address, city, state, zip, phoneNumber, email));
-
+		}else {
+			System.out.println("Enter name again");
+		}
 	}
 
 	public void display() {
@@ -88,7 +92,7 @@ public class AddressBook {
 		System.out.println("Enter your E-mail");
 		email = sc.next();
 
-		contactList.set(i, (new Contacts(firstName, lastName, address, city, state, zip, phoneNumber, email)));
+		contactList.add((new Contacts(firstName, lastName, address, city, state, zip, phoneNumber, email)));
 
 	}
 
@@ -137,4 +141,5 @@ public class AddressBook {
 		contactList.remove(index);
 
 	}
+	
 }
