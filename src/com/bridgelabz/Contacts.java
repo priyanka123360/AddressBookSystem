@@ -5,14 +5,14 @@ public class Contacts {
 
 	Scanner sc = new Scanner(System.in);
 
-	private String firstName;
-	private String lastName;
-	private String address;
-	private String city;
-	private String state;
-	private int zip;
-	private long phoneNumber;
-	private String email;
+	public static String firstName;
+	public String lastName;
+	public String address;
+	public String city;
+	public String state;
+	public int zip;
+	public long phoneNumber;
+	public String email;
 
 	@Override
 	public String toString() {
@@ -36,7 +36,7 @@ public class Contacts {
 		this.email = email;
 	}
 
-	public String getFirstName() {
+	public static String getFirstName() {
 		return firstName;
 	}
 
