@@ -36,7 +36,7 @@ public class Contacts {
 		this.email = email;
 	}
 
-	public static String getFirstName() {
+	public String getFirstName() {
 		return firstName;
 	}
 

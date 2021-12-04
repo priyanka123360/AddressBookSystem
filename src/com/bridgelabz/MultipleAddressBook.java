@@ -28,7 +28,7 @@ public class MultipleAddressBook {
 	int act;
 	System.out.println("Welcome to Address Book");
 	do {
-		System.out.println("Enter\n1.Add\n2.Update\n3.Delete\n4.Print\n5.Exit");
+		System.out.println("Enter\n1.Add\n2.Update\n3.Delete\n4.Print\n5.search\n6.exit");
 		act = sc.nextInt();
 		int index = -1;
 		String fName;
@@ -56,12 +56,24 @@ public class MultipleAddressBook {
 			addressBook.display();
 			break;
 		case 5:
-			
-			System.out.println("Exist" + bookName);
-			System.exit(0);
+			addressBook.searchByCityName();
+			break;
+		case 6:
+			System.out.println("Do you wank to exit the address book? \nEnter 1. New Address Book \n2. Exist");
+			int temp = sc.nextInt();
+				switch(temp) {
+					case 1:
+						newAddressBook();
+						break;
+					case 2:
+						System.out.println("Exit" + bookName);
+						System.exit(0);
+						
+			}
 		}
 	} while (act > 0 || act > 5);
 }
+	
 	public void displayBook() {
 		System.out.println("AddressBooks");
 		for (Entry<String, List> entry : mbook.entrySet()) {
@@ -69,4 +81,5 @@ public class MultipleAddressBook {
 		}
 	}
 
+	
 }

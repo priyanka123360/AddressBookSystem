@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Map.Entry;
 
 public class AddressBook {
 	String firstName;
@@ -15,15 +16,18 @@ public class AddressBook {
 	int zip;
 	long phoneNumber;
 	String email;
-	private static List<Contacts> contactList = new ArrayList<>();;
+
+	MultipleAddressBook mbooks = new MultipleAddressBook();
+
+	public static List<Contacts> contactList = new ArrayList<>();
 
 	public static List<Contacts> getContactList() {
 		return contactList;
 	}
+
 	public static void setContactList(List<Contacts> contactList) {
 		AddressBook.contactList = contactList;
 	}
-
 
 	Scanner sc = new Scanner(System.in);
 
@@ -32,7 +36,7 @@ public class AddressBook {
 		Contacts person = new Contacts();
 		System.out.println("Enter your First Name");
 		firstName = sc.next();
-		if (getIndex(firstName) == -1) {
+
 		person.setFirstName(firstName);
 		System.out.println("Enter your Last Name");
 		lastName = sc.next();
@@ -55,18 +59,14 @@ public class AddressBook {
 		System.out.println("Enter your E-mail");
 		email = sc.next();
 		person.setEmail(email);
-		contactList.add( new Contacts(firstName, lastName, address, city, state, zip, phoneNumber, email));
-		}
-	else {
-			System.out.println("Enter name again");
-		}
+		contactList.add(new Contacts(firstName, lastName, address, city, state, zip, phoneNumber, email));
 	}
-	
+
 	public void display() {
 		int i = 1;
 		for (Contacts s : contactList) {
 			System.out.println(
-					"Contact." + " [ FirstName=" + s.getFirstName() + ", FastName=" + s.getLastName() + ", Address="
+					"Contact." + " [ FirstName=" + s.getFirstName() + ", LastName=" + s.getLastName() + ", Address="
 							+ s.getAddress() + ", city=" + s.getCity() + ", state=" + s.getState() + ", zip-code="
 							+ s.getZip() + ", Phone Number=" + s.getPhoneNumber() + ", email=" + s.getEmail() + "]");
 		}
@@ -81,9 +81,9 @@ public class AddressBook {
 		}
 		return index;
 	}
-	
+
 	public boolean getDuplicate(String firstName) {
-		
+
 		for (int i = 0; i < contactList.size(); i++) {
 			if (contactList.get(i).getFirstName().contains(firstName)) {
 				return true;
@@ -111,14 +111,29 @@ public class AddressBook {
 		System.out.println("Enter your E-mail");
 		email = sc.next();
 
-		contactList.set(i,(new Contacts(firstName, lastName, address, city, state, zip, phoneNumber, email)));
+		contactList.set(i, (new Contacts(firstName, lastName, address, city, state, zip, phoneNumber, email)));
 
 	}
 
-	
 	public void removeContact(int index) {
 		contactList.remove(index);
 
 	}
-	
+
+	public void searchByCityName() {
+		System.out.println("Enter City Name or State Name");
+		String searchText = sc.next();
+
+		for (int i = 0; i < contactList.size(); i++) {
+//			Systemout.println("city name : "+ contactList.get(i).getCity().contains(cityName));
+			if (contactList.get(i).getCity().contains(searchText)
+					|| contactList.get(i).getState().contains(searchText)) {
+				System.out.println("Result according to city name : " + contactList.get(i));
+				}
+			else {
+				System.out.println("No Match Found.");
+			}
+
+		}
+	}
 }
