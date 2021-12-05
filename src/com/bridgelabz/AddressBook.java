@@ -8,6 +8,7 @@ import java.util.Scanner;
 import java.util.Map.Entry;
 
 public class AddressBook {
+	private static final String String = null;
 	String firstName;
 	String lastName;
 	String address;
@@ -121,19 +122,22 @@ public class AddressBook {
 	}
 
 	public void searchByCityName() {
+		Map<String, String> map = new HashMap<>();
 		System.out.println("Enter City Name or State Name");
 		String searchText = sc.next();
 
 		for (int i = 0; i < contactList.size(); i++) {
-//			Systemout.println("city name : "+ contactList.get(i).getCity().contains(cityName));
+//			System.out.println("city name : "+ contactList.get(i).getCity().contains(cityName));
 			if (contactList.get(i).getCity().contains(searchText)
 					|| contactList.get(i).getState().contains(searchText)) {
 				System.out.println("Result according to city name : " + contactList.get(i));
-				}
-			else {
+
+			} else {
 				System.out.println("No Match Found.");
 			}
-
+			for (Map.Entry<String, String> entry : map.entrySet()) {
+				System.out.println(entry.getKey() + "-" + entry.getValue());
+			}
 		}
 	}
 }
