@@ -13,8 +13,9 @@ public class Main {
 			mbooks.newAddressBook();
 			System.out.println("Add new AddressBook \n(Yes/No)");
 			str = sc.next();
-			mbooks.displayBook();
+		
 		}
-	//	mbooks.displayBook();
+	mbooks.displayBook();
+	
 	}
 }
