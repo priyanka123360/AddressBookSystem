@@ -32,7 +32,7 @@ public class MultipleAddressBook {
 		System.out.println("Welcome to Address Book");
 		do {
 			System.out.println(
-					"Enter\n1.Add\n2.Update\n3.Delete\n4.Print\n5.Search by City or State \n6.View by City or State\n7.Exit");
+					"Enter\n1.Add\n2.Update\n3.Delete\n4.Print\n5.Search by City or State \n6.View by City or State\n7.Sort by Name \n8.Exit");
 			act = sc.nextInt();
 			int index = -1;
 			String fName;
@@ -66,6 +66,9 @@ public class MultipleAddressBook {
 				addressBook.view_By_City_or_State_Name();
 				break;
 			case 7:
+				addressBook.sort_by_PersonName();
+				break;
+			case 8:
 				System.out.println("Exit" + bookName);
 				act = 0;
 				break;
