@@ -17,16 +17,20 @@ public class AddressBook {
 	int zip;
 	long phoneNumber;
 	String email;
+	
+	public AddressBook() {
+		contactList = new ArrayList<>();
+	}
 
 	MultipleAddressBook mbooks = new MultipleAddressBook();
 
 	public static List<Contacts> contactList = new ArrayList<>();
 
-	public static List<Contacts> getContactList() {
+	public List<Contacts> getContactList() {
 		return contactList;
 	}
 
-	public static void setContactList(List<Contacts> contactList) {
+	public  void setContactList(List<Contacts> contactList) {
 		AddressBook.contactList = contactList;
 	}
 
@@ -64,15 +68,8 @@ public class AddressBook {
 	}
 
 	public void display() {
-		int i = 1;
-		for (Contacts s : contactList) {
-			System.out.println(
-					"Contact." + " [ FirstName=" + s.getFirstName() + ", LastName=" + s.getLastName() + ", Address="
-							+ s.getAddress() + ", city=" + s.getCity() + ", state=" + s.getState() + ", zip-code="
-							+ s.getZip() + ", Phone Number=" + s.getPhoneNumber() + ", email=" + s.getEmail() + "]");
-		}
+		contactList.stream().forEach(System.out::println);
 	}
-
 	public int getIndex(String firstName) {
 		int index = -1;
 		for (int i = 0; i < contactList.size(); i++) {

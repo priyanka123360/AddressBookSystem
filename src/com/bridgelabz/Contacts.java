@@ -1,4 +1,5 @@
 package com.bridgelabz;
+
 import java.util.Scanner;
 
 public class Contacts {
@@ -13,13 +14,6 @@ public class Contacts {
 	public int zip;
 	public long phoneNumber;
 	public String email;
-
-	@Override
-	public String toString() {
-		return getClass().getSimpleName() + "Contact [firstName=" + firstName + ", lastName=" + lastName + ", address="
-				+ address + ", city=" + city + ", state=" + state + ", zip=" + zip + ", phoneNumber=" + phoneNumber
-				+ ", email=" + email + "]";
-	}
 
 	public Contacts() {
 	}
@@ -100,4 +94,10 @@ public class Contacts {
 		return email;
 	}
 
+	@Override
+	public String toString() {
+		return getClass().getSimpleName() + "Contact [firstName=" + firstName + ", lastName=" + lastName + ", address="
+				+ address + ", city=" + city + ", state=" + state + ", zip=" + zip + ", phoneNumber=" + phoneNumber
+				+ ", email=" + email + "]";
+	}
 }
