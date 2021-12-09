@@ -17,7 +17,7 @@ public class AddressBook {
 	int zip;
 	long phoneNumber;
 	String email;
-	
+
 	public AddressBook() {
 		contactList = new ArrayList<>();
 	}
@@ -30,7 +30,7 @@ public class AddressBook {
 		return contactList;
 	}
 
-	public  void setContactList(List<Contacts> contactList) {
+	public void setContactList(List<Contacts> contactList) {
 		AddressBook.contactList = contactList;
 	}
 
@@ -70,6 +70,7 @@ public class AddressBook {
 	public void display() {
 		contactList.stream().forEach(System.out::println);
 	}
+
 	public int getIndex(String firstName) {
 		int index = -1;
 		for (int i = 0; i < contactList.size(); i++) {
@@ -120,21 +121,17 @@ public class AddressBook {
 
 	public void searchByCityName() {
 		Map<String, String> map = new HashMap<>();
-		System.out.println("Enter City Name or State Name");
+		System.out.println("Enter City Name ");
 		String searchText = sc.next();
+		contactList.stream().filter(c -> c.getCity().equals(searchText)).forEach(System.out::println);
 
-		for (int i = 0; i < contactList.size(); i++) {
-//			System.out.println("city name : "+ contactList.get(i).getCity().contains(cityName));
-			if (contactList.get(i).getCity().contains(searchText)
-					|| contactList.get(i).getState().contains(searchText)) {
-				System.out.println("Result according to city name : " + contactList.get(i));
+	}
 
-			} else {
-				System.out.println("No Match Found.");
-			}
-			for (Map.Entry<String, String> entry : map.entrySet()) {
-				System.out.println(entry.getKey() + "-" + entry.getValue());
-			}
-		}
+	public void searchByStateName() {
+		Map<String, String> map = new HashMap<>();
+		System.out.println("Enter State Name");
+		String searchText = sc.next();
+		contactList.stream().filter(c -> c.getState().equals(searchText)).forEach(System.out::println);
+
 	}
 }
