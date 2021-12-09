@@ -121,20 +121,24 @@ public class AddressBook {
 	}
 
 	public void searchByCity_or_State_Name() {
-
+		
 		System.out.println("Enter City Name  or State Name ");
 		String searchText = sc.next();
-		contactList.stream().filter(c -> (c.getCity().equals(searchText) || c.getState().equals(searchText)))
-				.forEach(System.out::println);
-
+		Long countContacts = contactList.stream().filter(c -> (c.getCity().equals(searchText) || c.getState().equals(searchText)))
+				.peek(System.out::println).count();
+		System.out.println("The number of Contacts in City or State :" + searchText + " = " + countContacts);
+		
 	}
+
+
 
 	public void view_By_City_or_State_Name() {
 
 		System.out.println("Enter City Name  or State Name ");
 		String searchText = sc.next();
-		contactList.stream().filter(c -> (c.getCity().equals(searchText) || c.getState().equals(searchText))).forEach(
-				p -> System.out.println("First Name : " + p.getFirstName() + "  Last Name : " + p.getLastName()));
+		contactList.stream().filter(c -> (c.getCity().equals(searchText) || c.getState().equals(searchText)))
+		                     .forEach(p ->System.out.println("First Name : " + p.getFirstName() + "  Last Name : " + p.getLastName()));
+		                     
 
 	}
 }
