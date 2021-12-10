@@ -17,7 +17,7 @@ public class AddressBook {
 	String address;
 	String city;
 	String state;
-	int zip;
+	String zip;
 	long phoneNumber;
 	String email;
 
@@ -41,32 +41,32 @@ public class AddressBook {
 
 	public void addContact() {
 
-		Contacts person = new Contacts();
+		Contacts contacts = new Contacts();
 		System.out.println("Enter your First Name");
 		firstName = sc.next();
 		if (checkDuplicate(firstName) == false) {
-			person.setFirstName(firstName);
+			contacts.setFirstName(firstName);
 			System.out.println("Enter your Last Name");
 			lastName = sc.next();
-			person.setLastName(lastName);
+			contacts.setLastName(lastName);
 			System.out.println("Enter your Address");
 			address = sc.next();
-			person.setAddress(address);
+			contacts.setAddress(address);
 			System.out.println("Enter your City");
 			city = sc.next();
-			person.setCity(city);
+			contacts.setCity(city);
 			System.out.println("Enter your State");
 			state = sc.next();
-			person.setState(state);
+			contacts.setState(state);
 			System.out.println("Enter your ZipCode");
-			zip = sc.nextInt();
-			person.setZip(zip);
+			zip = sc.next();
+			contacts.setZip(zip);
 			System.out.println("Enter your Phone Number");
 			phoneNumber = sc.nextInt();
-			person.setPhoneNumber(phoneNumber);
+			contacts.setPhoneNumber(phoneNumber);
 			System.out.println("Enter your E-mail");
 			email = sc.next();
-			person.setEmail(email);
+			contacts.setEmail(email);
 			contactList.add(new Contacts(firstName, lastName, address, city, state, zip, phoneNumber, email));
 		} else {
 			System.out.println("Duplicate value cant be add");
@@ -111,7 +111,7 @@ public class AddressBook {
 		System.out.println("Enter your State");
 		state = sc.next();
 		System.out.println("Enter your ZipCode");
-		zip = sc.nextInt();
+		zip = sc.next();
 		System.out.println("Enter your Phone Number");
 		phoneNumber = sc.nextLong();
 		System.out.println("Enter your E-mail");
@@ -146,21 +146,61 @@ public class AddressBook {
 
 	}
 
-	public static void sort_by_PersonName() {
+	public static void sortedContactByFirstName() {
 
-		List<Contacts> sortedContact = contactList.stream().sorted(new compareToFirstName())
-				                                  .collect(Collectors.toList());
-	                                            	System.out.println(sortedContact);
+		List<Contacts> sortedContact = contactList.stream().sorted(new compareFirstName()).collect(Collectors.toList());
+		System.out.println(sortedContact);
+	}
+
+	public static void sortedContactByCity() {
+		contactList.stream().sorted(new compareCity()).forEach(System.out::println);
+
+	}
+
+	public static void sortedContactByState() {
+		contactList.stream().sorted(new compareState()).forEach(System.out::println);
+
+	}
+
+	public static void sortedContactByZip() {
+		contactList.stream().sorted(new compareZip()).forEach(System.out::println);
+
 	}
 
 }
 
-class compareToFirstName implements Comparator<Contacts> {
+class compareFirstName implements Comparator<Contacts> {
 
 	@Override
-	public int compare(Contacts c1, Contacts c2) {
+	public int compare(Contacts o1, Contacts o2) {
 
-		return c1.getFirstName().compareTo(c2.getFirstName());
+		return o1.getFirstName().compareTo(o2.getFirstName());
 	}
 
+}
+
+class compareCity implements Comparator<Contacts> {
+
+	@Override
+	public int compare(Contacts o1, Contacts o2) {
+		return o1.getCity().compareTo(o2.getCity());
+	}
+
+}
+
+class compareState implements Comparator<Contacts> {
+
+	@Override
+	public int compare(Contacts o1, Contacts o2) {
+		return o1.getState().compareTo(o2.getState());
+	}
+
+}
+
+class compareZip implements Comparator<Contacts> {
+
+	@Override
+	public int compare(Contacts o1, Contacts o2) {
+		return o1.getZip().compareTo(o2.getZip());
+	}
 }

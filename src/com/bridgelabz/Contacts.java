@@ -11,14 +11,14 @@ public class Contacts {
 	public String address;
 	public String city;
 	public String state;
-	public int zip;
+	public String zip;
 	public long phoneNumber;
 	public String email;
 
 	public Contacts() {
 	}
 
-	Contacts(String firstName, String lastName, String address, String city, String state, int zip, long phoneNumber,
+	Contacts(String firstName, String lastName, String address, String city, String state, String zip, long phoneNumber,
 			String email) {
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -50,7 +50,7 @@ public class Contacts {
 		return state;
 	}
 
-	public int getZip() {
+	public String getZip() {
 		return zip;
 	}
 
@@ -78,7 +78,7 @@ public class Contacts {
 		this.state = state;
 	}
 
-	public void setZip(int zip) {
+	public void setZip(String zip) {
 		this.zip = zip;
 	}
 
