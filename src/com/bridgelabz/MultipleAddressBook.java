@@ -1,5 +1,7 @@
 package com.bridgelabz;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -10,9 +12,9 @@ import java.util.Scanner;
 public class MultipleAddressBook {
 	Map<String, List> mbook = new HashMap<>();
 	Scanner sc = new Scanner(System.in);
-	String bookName = "";
+	static String bookName = "";
 
-	public void newAddressBook() {
+	public void newAddressBook() throws IOException {
 		AddressBook addressBook = new AddressBook();
 		System.out.println("Enter new Address Book Name");
 		bookName = sc.next();
@@ -24,11 +26,12 @@ public class MultipleAddressBook {
 		}
 	}
 
-	public void addAddressBook() {
+	public void addAddressBook() throws IOException {
 		AddressBook addressBook = new AddressBook();
 
 		int act;
 		System.out.println("Welcome to Address Book");
+		List<Contacts> contactList = new ArrayList<Contacts>();
 		do {
 			System.out.println(
 					"Enter\n1.Add\n2.Update\n3.Delete\n4.Print\n5.Search by City or State \n6.View by City or State"
@@ -38,7 +41,7 @@ public class MultipleAddressBook {
 			String fName;
 			switch (act) {
 			case 1:
-				addressBook.addContact();
+				contactList = addressBook.addContact();
 				break;
 			case 2:
 				System.out.println("Enter your First name to update");
@@ -83,7 +86,10 @@ public class MultipleAddressBook {
 				break;
 
 			}
-		} while (act > 0 || act > 5);
+		} while (act > 0 || act > 12);
+		AddressBookFileIO fileIO = new AddressBookFileIO();
+		System.out.println(contactList);
+		fileIO.writeAddressBook(contactList);
 	}
 
 	public void displayBook() {
